@@ -12,18 +12,16 @@ function showAllToDo(toDoItem){
  let List  = document.createElement("li") 
  List.innerHTML = `
  <span>${toDoItem}</span>
- <button>Edit</button>
+ <button class="edit_btn">Edit</button>
  <button class="delete_btn">Delete</button>
  ` 
  const unOrderedList = document.querySelector("#todo__list")
  unOrderedList.appendChild(List) 
- addListenerToD
+ addListenerToDelete()
+
+ addListenerToEditor()
  
- 
- 
- 
- 
- elete()
+
 
 }
 
@@ -35,6 +33,8 @@ oneToDoItem.remove()
 }
 
 
+
+
 function addListenerToDelete(){
     const deleteButtons = document.querySelectorAll(".delete_btn")
     const lastDeleteButton = deleteButtons[deleteButtons.length-1]
@@ -42,8 +42,23 @@ function addListenerToDelete(){
 
 }
 
-
-
+function editToDo(u){
+    const targetButton = u.target
+    const oneToDoItem = targetButton.previousElementSibling
+    const field = document.querySelector(".form_input")
+    if(u.target.innerHTML === "Edit"){
+        targetButton.innerHTML = "save"
+        field.focus()
+    } else{
+          oneToDoItem.innerHTML = field.value 
+          targetButton.innerHTML = "Edit" 
+        }
+}
+function addListenerToEditor(){
+    const editButtons = document.querySelectorAll(".edit_btn")
+    const lastEditButton = editButtons[editButtons.length-1]
+    lastEditButton.addEventListener("click", editToDo)
+}
 const toDoForm = document.querySelector(".form")
 toDoForm.addEventListener("submit", submitToDo)
 
