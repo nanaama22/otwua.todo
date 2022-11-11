@@ -45,7 +45,8 @@ function addListenerToDelete(){
 function editToDo(u){
     const targetButton = u.target
     const oneToDoItem = targetButton.previousElementSibling
-    const field = document.querySelector(".form_input")
+    const field = document.querySelector(".form__input")
+    console.log(field)
     if(u.target.innerHTML === "Edit"){
         targetButton.innerHTML = "save"
         field.focus()
@@ -56,7 +57,7 @@ function editToDo(u){
 }
 function addListenerToEditor(){
     const editButtons = document.querySelectorAll(".edit_btn")
-    const lastEditButton = editButtons[editButtons.length-1]
+    const lastEditButton = editButtons[editButtons.length - 1]
     lastEditButton.addEventListener("click", editToDo)
 }
 const toDoForm = document.querySelector(".form")
